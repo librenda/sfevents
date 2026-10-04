@@ -13,7 +13,10 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<!-- Fonts load without blocking the first paint: the page shows instantly in fallback fonts, then swaps. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
 <style>
 /* INTERPLAY waitroom (Purple Slate). Layout: the whole room is purple; INTERPLAY is a black intertitle card hung center stage. The card irises shut and the waitroom box irises open in its place. */
 :root{
@@ -88,6 +91,8 @@ button.go:focus-visible{outline:2px solid var(--ring);outline-offset:3px}
 
 @media (prefers-reduced-motion:reduce){.card,.frame{transition:none;animation:none}.ticker span{animation:none;padding-left:16px}}
 </style>
+<!-- Without JavaScript, skip the intro and show the waitroom. -->
+<noscript><style>#intro{display:none!important}#room[hidden]{display:grid!important}</style></noscript>
 </head>
 <body class="in-intro">
 <div class="drape l"></div><div class="drape r"></div>
