@@ -131,7 +131,11 @@
       err.hidden = true;
       email.removeAttribute('aria-invalid');
       const button = form.querySelector('button');
+      const label = button.textContent;
       button.disabled = true;
+      button.innerHTML = '<span class="orbit"></span>';
+      button.setAttribute('aria-label', 'Saving');
+      ring.surge();
       save(v).then(() => {
         ring.surge();
         const seat = String(12 + Math.floor(Math.random() * 180)).padStart(3, '0');
@@ -144,7 +148,7 @@
       }, () => {
         err.textContent = "We couldn't save that. Try again in a moment.";
         err.hidden = false;
-      }).finally(() => { button.disabled = false; });
+      }).finally(() => { button.disabled = false; button.textContent = label; button.removeAttribute('aria-label'); });
     });
 
 
